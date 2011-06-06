@@ -1,6 +1,6 @@
 <% content_for :head do %>
 	<%= stylesheet_link_tag 'simple_form/screen', 'simple_form/dropdown', 'simple_form/date'  %>
-	<%= javascript_include_tag 'simple_form/helpers', 'simple_form/date', 'simple_form/form'  %>
+	<%= javascript_include_tag 'simple_form/helpers', 'simple_form/date', 'simple_form/form', 'scriptaculous', 'AutoComplete'  %>
 <% end %>
 
 <%= form_tag(travels_path, :method => 'POST') do -%>
@@ -11,7 +11,7 @@
 		</div>
 		<div>
 			<%= label_tag 'flight_number' %>
-			<%= text_field_tag 'flight_number' %>
+			<%= text_field_tag 'flight_number', nil, :id => 'flight_number', :autocomplete => 'off' %>
 		</div>
 		<div class="date">
 			<%= label_tag 'flight_date' %>
@@ -22,3 +22,9 @@
 		</div>
 	<% end%>
 <% end %>
+<script type="text/javascript">
+	new AutoComplete('flight_number', 'air_routes/query/', {
+		delay: 0.25,
+		resultFormat: AutoComplete.Options.RESULT_FORMAT_JSON
+	});
+</script>
