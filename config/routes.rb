@@ -1,4 +1,6 @@
 Flinkedin::Application.routes.draw do
+  get "test/test"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -13,6 +15,7 @@ Flinkedin::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :travels
+  resources :flights
 
   # Sample resource route with options:
   #   resources :products do
