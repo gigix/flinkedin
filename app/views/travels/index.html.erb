@@ -1,19 +1,24 @@
-<%= stylesheet_link_tag 'main' %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag 'simple_form/screen', 'simple_form/dropdown', 'simple_form/date'  %>
+	<%= javascript_include_tag 'simple_form/helpers', 'simple_form/date', 'simple_form/form'  %>
+<% end %>
 
 <%= form_tag(travels_path, :method => 'POST') do -%>
-	<div>
-		<%= label_tag 'passenger_name' %>
-		<%= text_field_tag 'passenger_name' %>
-	</div>
-	<div>
-		<%= label_tag 'flight_number' %>
-		<%= text_field_tag 'flight_number' %>
-	</div>
-	<div>
-		<%= label_tag 'flight_date' %>
-		<%= text_field_tag 'flight_date' %>
-	</div>
-	<div>
-		<%= submit_tag %>
-	</div>
+	<%= field_set_tag 'Travel' do %>
+		<div>
+			<%= label_tag 'passenger_name' %>
+			<%= text_field_tag 'passenger_name' %>
+		</div>
+		<div>
+			<%= label_tag 'flight_number' %>
+			<%= text_field_tag 'flight_number' %>
+		</div>
+		<div class="date">
+			<%= label_tag 'flight_date' %>
+			<%= text_field_tag 'flight_date', nil, :class => 'date_input' %>
+		</div>
+		<div>
+			<%= submit_tag %>
+		</div>
+	<% end%>
 <% end %>
