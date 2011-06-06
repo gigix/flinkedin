@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag 'main' %>
+
+<%= form_tag(travels_path, :method => 'POST') do -%>
+	<div>
+		<%= label_tag 'passenger_name' %>
+		<%= text_field_tag 'passenger_name' %>
+	</div>
+	<div>
+		<%= label_tag 'flight_number' %>
+		<%= text_field_tag 'flight_number' %>
+	</div>
+	<div>
+		<%= label_tag 'flight_date' %>
+		<%= text_field_tag 'flight_date' %>
+	</div>
+	<div>
+		<%= submit_tag %>
+	</div>
+<% end %>
