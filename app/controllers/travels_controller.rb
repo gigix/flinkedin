@@ -4,7 +4,7 @@ class TravelsController < ApplicationController
     air_route = AirRoute.find_by_number(flight_number) || AirRoute.create!(:number => flight_number)
     
     flight_date = params[:flight_date]
-    flight = air_route.flights.find_by_date(flight_date) || air_route.flights.create!(:date => flight_date)
+    flight = air_route.flights.find_by_date(Date.parse(flight_date)) || air_route.flights.create!(:date => flight_date)
     
     flight.travels.create!(:passenger_name => params[:passenger_name])
     
@@ -12,5 +12,6 @@ class TravelsController < ApplicationController
   end
   
   def index
+    @travels = Travel.find(:all)
   end
 end

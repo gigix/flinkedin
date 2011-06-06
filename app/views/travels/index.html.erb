@@ -22,6 +22,21 @@
 		</div>
 	<% end%>
 <% end %>
+
+<table>
+  <tr>
+    <th>Passenger Name</th>
+    <th>Flight Number &amp; Date</th>
+  </tr>
+
+<% @travels.each do |travel| %>
+  <tr>
+    <td><%= travel.passenger_name %></td>
+    <td><%= link_to travel.flight.air_route.number + " " + travel.flight.date.to_s, flight_path(travel.flight) %></td>
+  </tr>
+<% end %>
+</table>
+
 <script type="text/javascript">
 	new AutoComplete('flight_number', 'air_routes/query/', {
 		delay: 0.25,
