@@ -5,7 +5,7 @@
   <p class="alert"><%= alert %></p>
   <% if user_signed_in? %>
   <div>
-	<%= current_user.email %>, Welcome! 
+	 Welcome, <%= current_user.name %>!
 	<%= link_to 'Sign out', destroy_user_session_path %>
   </div>
   <% end %>

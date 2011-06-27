@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110606092443) do
+ActiveRecord::Schema.define(:version => 20110627164927) do
 
   create_table "air_routes", :force => true do |t|
     t.string   "number"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(:version => 20110606092443) do
   end
 
   create_table "travels", :force => true do |t|
-    t.string   "passenger_name"
     t.integer  "flight_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

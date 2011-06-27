@@ -1,26 +1,27 @@
 <% content_for :head do %>
-	<%= stylesheet_link_tag 'simple_form/screen', 'simple_form/dropdown', 'simple_form/date'  %>
-	<%= javascript_include_tag 'simple_form/helpers', 'simple_form/date', 'simple_form/form', 'scriptaculous', 'AutoComplete'  %>
+    <%= stylesheet_link_tag 'simple_form/screen', 'simple_form/dropdown', 'simple_form/date' %>
+    <%= javascript_include_tag 'simple_form/helpers', 'simple_form/date', 'simple_form/form', 'scriptaculous', 'AutoComplete' %>
 <% end %>
 
-<%= form_tag(travels_path, :method => 'POST') do -%>
-	<%= field_set_tag 'Travel' do %>
-		<div>
-			<%= label_tag 'passenger_name' %>
-			<%= text_field_tag 'passenger_name' %>
-		</div>
-		<div>
-			<%= label_tag 'flight_number' %>
-			<%= text_field_tag 'flight_number', nil, :id => 'flight_number', :autocomplete => 'off' %>
-		</div>
-		<div class="date">
-			<%= label_tag 'flight_date' %>
-			<%= text_field_tag 'flight_date', nil, :class => 'date_input' %>
-		</div>
-		<div>
-			<%= submit_tag %>
-		</div>
-	<% end%>
+<%= form_tag(travels_path, :method => 'POST') do %>
+    <%= field_set_tag 'Travel' do %>
+        <div>
+          <%= label_tag 'name' %>
+          <%= current_user.name if user_signed_in? %>
+          <%= hidden_field_tag 'user_id', current_user.id %>
+        </div>
+        <div>
+          <%= label_tag 'flight_number' %>
+          <%= text_field_tag 'flight_number', nil, :id => 'flight_number', :autocomplete => 'off' %>
+        </div>
+        <div class="date">
+          <%= label_tag 'flight_date' %>
+          <%= text_field_tag 'flight_date', nil, :class => 'date_input' %>
+        </div>
+        <div>
+          <%= submit_tag %>
+        </div>
+    <% end %>
 <% end %>
 
 <table>
@@ -29,17 +30,17 @@
     <th>Flight Number &amp; Date</th>
   </tr>
 
-<% @travels.each do |travel| %>
-  <tr>
-    <td><%= travel.passenger_name %></td>
-    <td><%= link_to travel.flight.air_route.number + " " + travel.flight.date.to_s, flight_path(travel.flight) %></td>
-  </tr>
-<% end %>
+  <% @travels.each do |travel| %>
+      <tr>
+        <td><%= travel.user.name %></td>
+        <td><%= link_to travel.flight.air_route.number + " " + travel.flight.date.to_s, flight_path(travel.flight) %></td>
+      </tr>
+  <% end %>
 </table>
 
 <script type="text/javascript">
-	new AutoComplete('flight_number', 'air_routes/query/', {
-		delay: 0.25,
-		resultFormat: AutoComplete.Options.RESULT_FORMAT_JSON
-	});
+    new AutoComplete('flight_number', 'air_routes/query/', {
+        delay: 0.25,
+        resultFormat: AutoComplete.Options.RESULT_FORMAT_JSON
+    });
 </script>

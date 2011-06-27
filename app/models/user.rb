@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   
-  #validates_presence_of :name
-  #validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_presence_of :name
+  validates_uniqueness_of :name, :email, :case_sensitive => false
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

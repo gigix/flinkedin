@@ -6,7 +6,7 @@ class TravelsController < ApplicationController
     flight_date = params[:flight_date]
     flight = air_route.flights.find_by_date(Date.parse(flight_date)) || air_route.flights.create!(:date => flight_date)
     
-    flight.travels.create!(:passenger_name => params[:passenger_name])
+    flight.travels.create!(:user_id => params[:user_id])
     
     redirect_to :action => :index
   end
